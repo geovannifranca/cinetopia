@@ -3,13 +3,13 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 
 class PrimaryButtonWidget extends StatelessWidget {
-  final String label;
+  final String text;
   final IconData? icon;
-  final GestureTapCallback onTap;
+  final Function onTap;
 
   const PrimaryButtonWidget({
     super.key,
-    required this.label,
+    required this.text,
     this.icon,
     required this.onTap,
   });
@@ -17,7 +17,7 @@ class PrimaryButtonWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: onTap,
+      onTap: (){onTap();},
       child: Ink(
         padding: const EdgeInsets.symmetric(vertical: 19, horizontal: 26),
         decoration: BoxDecoration(
@@ -29,14 +29,14 @@ class PrimaryButtonWidget extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             Text(
-              label,
+              text,
               style: const TextStyle(
                 color: Color(0XFF1D0E44),
                 fontSize: 20,
                 fontWeight: FontWeight.w700,
               ),
             ),
-            Icon(icon, color: const Color(0XFF1D0E44)),
+            icon != null ? Icon(icon, color: const Color(0XFF1D0E44)) : Container(),
           ],
         ),
       ),
