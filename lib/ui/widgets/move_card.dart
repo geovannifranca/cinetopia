@@ -1,7 +1,11 @@
+import 'package:cinetopia/app/helpers/consts.dart';
+import 'package:cinetopia/app/models/movie_model.dart';
 import 'package:flutter/material.dart';
 
 class MoveCard extends StatelessWidget {
-  const MoveCard({super.key});
+  final MovieModel popularMovie;
+
+  const MoveCard({super.key, required this.popularMovie});
 
   @override
   Widget build(BuildContext context) {
@@ -13,25 +17,36 @@ class MoveCard extends StatelessWidget {
           decoration: BoxDecoration(
             color: Colors.black,
             borderRadius: BorderRadius.circular(8),
+            image: DecorationImage(
+              image: NetworkImage("$imageUrlPrefix${popularMovie.imageUrl}"),
+              fit: BoxFit.cover,
+            ),
           ),
-          margin: const EdgeInsets.only(right: 20),
+          margin: EdgeInsets.only(right: 20),
         ),
-        Column(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Padding(
-              padding: const EdgeInsets.only(bottom: 6),
-              child: const Text(
-                "Título do Filme",
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
+        Expanded(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(bottom: 6),
+                child: Text(
+                  popularMovie.title,
+                  style: const TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.w600,
+                  ),
+                  overflow: TextOverflow.ellipsis,
+                  maxLines: 2,
+                ),
               ),
-            ),
-            const Text(
-              "Lançament: 2014-04-04",
-              style: TextStyle(color: Color(0XFFA5A5A5)),
-            ),
-          ],
+              Text(
+                "Lançament: ${popularMovie.releaseDate}",
+                style: TextStyle(color: Color(0XFFA5A5A5)),
+              ),
+            ],
+          ),
         ),
       ],
     );

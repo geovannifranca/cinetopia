@@ -27,9 +27,14 @@ class _DashboardState extends State<Dashboard> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        body: Padding(
-          padding: const EdgeInsets.fromLTRB(16, 54, 16, 0),
-          child: _pages.elementAt(_currentIndex),
+        body: Ink(
+          decoration: const BoxDecoration(
+            color: Color(0XFF1D0E44),
+          ),
+          child: Padding(
+            padding: const EdgeInsets.fromLTRB(16, 54, 16, 0),
+            child: _pages.elementAt(_currentIndex),
+          ),
         ),
         bottomNavigationBar: BottomNavigationBar(
           currentIndex: _currentIndex,
